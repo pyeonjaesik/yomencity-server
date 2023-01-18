@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>        
+    <title>Document</title>
+    <style>
+        #success{
+            position: absolute;
+            width:100%;
+            height: 50px;
+            top:0;
+            left:0;
+            line-height: 50px;
+            color:rgba(22,23,27,0.8);
+            padding-top: 50%;
+            text-align: center;
+            font-size:18px;
+            text-shadow: 0px 0px 0px rgba(255,255,255,0);
+            font-weight: 700;
+        }
+        .ppp{
+            position: absolute;
+            width:7px;
+            height: 7px;
+            border-radius: 50%;
+            bottom:40px;
+            right: 200px
+        }
+        #p1{
+            background: blue;
+        }
+        #p2{
+            background: red;
+        }
+        #p3{
+            background: orange;
+        }
+        #p4{
+            background: green;
+        }        
+    </style>
+    <script>
+      $(function(){
+        var w_h = window.innerHeight;
+        var w_w = window.innerWidth;
+        $('#p1').css({'left':(w_w/2-24.5)+'px'});
+        $('#p2').css({'left':(w_w/2-10)+'px'});
+        $('#p3').css({'left':(w_w/2+3.5)+'px'});
+        $('#p4').css({'left':(w_w/2+17.5)+'px'});            
+      });
+    </script>
+</head>
+<body>
+    <div id="success">
+        회원가입이 완료되었습니다.<br>브라우저를 닫고 로그인을 해주시기 바랍니다.        
+    </div>
+    <div id="p1" class="ppp"></div>
+    <div id="p2" class="ppp"></div>
+    <div id="p3" class="ppp"></div>
+    <div id="p4" class="ppp"></div>      
+</body>
+</html>

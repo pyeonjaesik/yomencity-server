@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <title>Document</title>
+    <!-- HTTPS required. HTTP will give a 403 forbidden response -->
+    <script src="https://sdk.accountkit.com/en_US/sdk.js"></script>   
+</head>
+<body>
+   <style>
+#loginPg_signupbtn{
+    position: absolute;
+    width: 80%;
+    left: 10%;
+    bottom:30px;
+    height: 40px;
+    border: 1px solid gray;
+    font-size: 20px;
+    color: white;
+    text-shadow: 0px 0px rgb(22,23,27);
+    font-family: sans-serif;
+    text-align: center;
+    border-radius: 10px;
+    line-height: 40px;
+
+}
+#signupPg{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width:100%;
+    height: 100%;
+    background: white;
+}
+#signupPg_header1_c{
+    position: absolute;
+    width:100px;
+    height: 40px;
+    top: 185px;
+    left: 30px;
+    color: red;
+    text-shadow: 0px 0px 0px rgba(255,255,255,0);
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+}
+.signupPg_header{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 60px;
+    background: white;
+}
+.signupPg_header_leftarrow{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    top: 10px;
+    left: 15px;
+    color:rgb(116,0,179);
+    font-size:18px;
+    font-weight: 600;
+    line-height: 35px;
+    text-align: center;
+}
+.signupPg_header_subject{
+    text-align: center;
+    font-size: 20px;
+    color: rgb(30,38,49);
+    position: absolute;
+    top: 10px;
+    width:100%;
+    height: 100%;
+    font-weight: 500;
+    background: white;
+    text-shadow: 0px 0px white;
+}
+.signupPg_header_space{
+    position: absolute;
+    width:100%;
+    height: 100%;
+    background: white;
+    top: 0;
+    left: 0;
+}      
+#signupPg_leftbtn{
+    position: absolute;
+    width: 20%;
+    left: 0%;
+    height: 100%;
+}
+.signupPg_header_rightarrow{
+    position: absolute;
+    width:80px;
+    height: 50px;
+    top:185px;
+    right: 10%;
+    border-radius: 1.5px;
+    color: white;
+    text-shadow:0px 0px 0px rgba(255,255,255,0);
+    text-align: center;
+    font-size: 20px;
+    line-height: 50px;
+    background:green;
+}
+.signupPg_header_rightarrow_g{
+    position: absolute;
+    width:80px;
+    height: 50px;
+    top:185px;
+    right: 10%;
+    border-radius: 1.5px;
+    color: white;
+    text-shadow: 0px 0px 0px rgba(255,255,255,0);
+    text-align: center;
+    font-size: 20px;
+    line-height: 50px;
+    background:rgb(22,23,27);
+}
+#signupPg_header5_ex1{
+    position: absolute;
+    top:180px;
+    left: 20px;
+}
+#signupPg_man{
+    position: absolute;
+    top:100px;
+    left: 7%;
+    height: 45px;
+    width:86%;
+    border-radius: 1.5px;
+    font-size: 18px;
+    text-align: center;
+    color: rgb(22,23,27);
+    text-shadow: 0px 0px rgba(22,23,27,0);
+    background: rgba(100,100,100,0.1);
+    line-height: 45px;
+}
+#signupPg_woman{
+    position: absolute;
+    top:170px;
+    right: 7%;
+    height: 45px;
+    width:86%;
+    border-radius: 1.5px;
+    font-size: 18px;
+    text-align: center;
+    color: rgb(22,23,27);
+    text-shadow: 0px 0px rgba(22,23,27,0);
+    background: rgba(100,100,100,0.1);
+    line-height: 45px;
+}
+#signupPg_header6_finish{
+    position: absolute;
+    top: 270px;
+    right:10%;
+    width:80px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    background: green;
+    text-shadow: 0px 0px rgba(22,23,27,0);
+    color: white;
+    line-height: 50px;
+}
+#signupPg_header6_finish_g{
+    position: absolute;
+    top: 270px;
+    right:10%;
+    width:80px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    background: rgb(22,23,27);
+    text-shadow: 0px 0px rgba(22,23,27,0);
+    color: white;
+    line-height: 50px;
+}
+#signupPg_header7_finish{
+    position: absolute;
+    top: 220px;
+    right:10%;
+    width:200px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    background: green;
+    text-shadow: 0px 0px rgba(22,23,27,0);
+    color: white;
+    line-height: 50px;
+}
+#signupPg_header7_finish_g{
+    position: absolute;
+    top: 220px;
+    right:10%;
+    width:200px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    background: rgb(22,23,27);
+    text-shadow: 0px 0px rgba(22,23,27,0);
+    color: white;
+    line-height: 50px;
+}
+#signupPg input[type=text],#signupPg input[type=password],#signupPg input[type=number] {
+    position: absolute;
+    left: 10%;
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-bottom: 2px solid rgba(100,100,100,0.28);
+    border-radius: 0%;
+    background: white;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    height: 30px;
+    top: 130px;
+    color: black;
+    text-shadow: 0px 0px white;
+}
+#signupPg input[type=text]:focus,#signupPg input[type=password]:focus ,#signupPg input[type=number]:focus{
+    border-bottom: 2px solid rgb(30,38,49);
+}
+.loader {
+  border: 2px solid rgba(255,255,255,0);
+  border-radius: 50%;
+  border-top: 2px solid #1e2631;
+  border-left: 2px solid #1e2631;
+  border-right: 2px solid #1e2631;
+  width: 80px;
+  height: 80px;
+  animation: spin 0.8s linear infinite;
+  box-sizing: border-box;
+  position: absolute;
+}
+.loader_m {
+  border: 2px solid rgba(255,255,255,0);
+  border-radius: 50%;
+  border-top: 2px solid #1e2631;
+  border-left: 2px solid #1e2631;
+  border-right: 2px solid #1e2631;
+  width: 30px;
+  height: 30px;
+  animation: spin 0.8s linear infinite;
+  box-sizing: border-box;
+  position: absolute;
+}
+.loader_m_w {
+  border: 2px solid #1e2631;
+  border-radius: 50%;
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+  border-right: 2px solid white;
+  width: 25px;
+  height: 25px;
+  animation: spin 0.8s linear infinite;
+  box-sizing: border-box;
+  position: absolute;
+}
+.loader_rp{
+  border: 2px solid #1e2631;
+  border-radius: 50%;
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+  border-right: 2px solid white;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.8s linear infinite;
+  box-sizing: border-box;
+  position: absolute;
+}
+.loadercg{
+  border: 3px solid rgba(255,255,255,0);
+  border-radius: 50%;
+  border-top: 3px solid #1e2631;
+  border-left: 3px solid #1e2631;
+  border-right: 3px solid #1e2631;
+  width: 45px;
+  height: 45px;
+  animation: spin 0.8s linear infinite;
+  box-sizing: border-box;
+  position: absolute;
+}
+.loadereg{
+  border: 3px solid rgb(22,23,27);
+  border-radius: 50%;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
+  border-right: 3px solid white;
+  width: 45px;
+  height: 45px;
+  animation: spin 0.8s linear infinite;
+  box-sizing: border-box;
+  position: absolute;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+    #signupPg_header7_info{
+        position: absolute;
+        top:195px;
+        left:0;
+        width:100%;
+        height: 15px;
+        line-height: 15px;
+        color:rgba(22,23,27);
+        font-size: 15px;
+        text-align: center;
+    }
+       #signupPg_header1_useinfo{
+           position: absolute;
+           top:260px;
+           left: 0;
+           width:100%;
+           height: 25px;
+           line-height: 25px;
+           text-align: center;
+           font-size: 14px;
+           color: rgb(22,23,27);
+       }   
+    </style>
+<script>
+    var url='https://www.yomencity.xyz:8443';
+    var w_h = window.innerHeight;
+    var w_w = window.innerWidth;  
+</script>
+<script>
+$(function(){
+    $('#signupPg_header1_c').touchend(function(e){
+        console.log('signup Pg_header1');
+        toast_t6('중복 확인을 하는중 입니다.');
+        e.preventDefault();
+        var data = {};
+        data.id = $('#signupPg_id').val();
+        var str = $('#signupPg_id').val();
+        var err = 0; 
+        for (var i=0; i<str.length; i++)  {
+            var chk = str.substring(i,i+1); 
+            if(!chk.match(/[0-9]|[a-z]|[A-Z]/)) { 
+              err = err + 1; 
+            } 
+        } 
+        if (err > 0) { 
+            toast_t3("숫자 및 영문만 입력 가능합니다."); 
+            return;
+        }
+        if(data.id.length==0){
+          toast_t3('아이디를 입력해 주세요.');
+          return;    
+        }else if(data.id.length>13){
+          toast_t3('아이디는 13자리 이하여야 합니다.');
+          return;    
+        }
+        $.ajax({
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            url: url+'/cert',
+            success: function(output){
+                console.log('ssss');
+                if(output.status == 1){
+                    console.log('cert success');
+                    $("#signupPg_header1_rightarrow").show();
+                    $("#signupPg_header1_rightarrow_g").hide();
+                    signup_id = data.id;
+                  toast_t3('사용 가능한 아이디 입니다.')    
+                }else if(output.status == 2){
+                  toast_t3('이미 다른 사용자가 이 계정을 사용 중 입니다.');
+                }else if(output.status==700){
+                  toast_t3('ID에 script란 글자를 포함할 수 없습니다.');    
+                }else{
+                  toast_t3('서버 오류');
+                }
+
+            }
+        });
+    });
+});    
+</script> 
+<script>
+//ui.js
+
+$(function(){
+  //  $("#signupPg").hide();
+    $("#Pg5_post").hide();
+    $('#Pg5_ch_profile_finish_s').hide();
+    //////////////////////////////////////////
+    $("#signupPg_header2").hide();
+    $("#signupPg_header3").hide();
+    $("#signupPg_header4").hide();
+    $("#signupPg_header5").hide();
+    $("#signupPg_header6").hide();
+    $("#signupPg_header7").hide(); 
+    $(".signupPg_header_rightarrow").hide();
+    $("#signupPg_header6_finish").hide();
+    $("#Pg5_ch_profile").hide();
+    $('#Pg5_setting').hide();
+    $("#loginPg_signupbtn").touchstart(function(){
+        $(this).css({'background':'rgb(220,220,220,0.1)','text-shadow':'0px 0px 0px rgb(220,220,220,0.1)'});        
+    });
+    $("#loginPg_signupbtn").touchend(function(){
+        $(this).css({'background':'rgb(22,23,27)','text-shadow':'0px 0px 0px rgb(22,23,27)'});        
+        $("#signupPg").show();
+        $("#signupPg_header1").show();
+        $('#signupPg_id').val('');
+        $('#signupPg_password1').val('');
+        $('#signupPg_password2').val('');
+        $('#signupPg_name').val('');
+        $('#signupPg_age').val('');
+    });    
+    $('#signupPg_header1_rightarrow_g').click(function(){
+      toast_t3('중복확인을 눌러주세요.')
+    });
+    $("#signupPg_header1_rightarrow").click(function(){
+        console.log($("#signupPg_id").val().length);
+        if(signup_id != $("#signupPg_id").val()){
+            toast_t2('중복확인을 다시 눌러주세요.');
+        }else{
+            $("#signupPg_header2").show();
+            $("#signupPg_header1").hide();
+            $("#signupPg_header1_rightarrow").hide();
+            $("#signupPg_header1_rightarrow_g").show();
+        }
+    });
+    $('#signupPg_header2_rightarrow_g').click(function(){
+      var pwl = $("#signupPg_password1").val().length;
+      if(pwl<6){
+        toast_t3('비밀번호는 6글자 이상 이어야 합니다.');  
+      }else{
+        toast_t3('비밀번호가 너무 길어요');  
+      }    
+    });    
+    $("#signupPg_header2_leftarrow").click(function(){
+        $("#signupPg_header2").hide();
+        $("#signupPg_password1").val('');
+        $("#signupPg_id").val('');
+        $("#signupPg_header1").show();
+    });
+    $("#signupPg_header2_rightarrow").click(function(){
+        $("#signupPg_header3").show();
+        $("#signupPg_header2").hide();
+        $("#signupPg_header2_rightarrow").hide();
+        $("#signupPg_header2_rightarrow_g").show();
+    });
+    $('#signupPg_header3_rightarrow_g').click(function(){
+      toast_t3('비밀번호가 일치하지 않습니다.');    
+    });
+    $("#signupPg_header3_leftarrow").click(function(){
+        $("#signupPg_header3").hide();
+        $("#signupPg_header2").show();
+        $("#signupPg_password2").val('');
+        $("#signupPg_password1").val('');
+    });
+    $("#signupPg_header3_rightarrow").click(function(){
+        $("#signupPg_header4").show();
+        $("#signupPg_header3").hide();
+        $("#signupPg_header3_rightarrow").hide();
+        $("#signupPg_header3_rightarrow_g").show();
+    });
+    $('#signupPg_header4_rightarrow_g').click(function(){
+        var str=$('#signupPg_name').val();
+        var err = 0;   
+        if(getTextLength(str) > 0 && getTextLength(str)<11){
+            for (var i=0; i<str.length; i++)  {
+                var chk = str.substring(i,i+1); 
+                if(!chk.match(/[가-힣]|[a-z]|[A-Z]/)) { 
+                  err++; 
+                } 
+            } 
+            if (err > 0) {
+                var str2=$('#signupPg_name').val();
+                var err2=0;
+                for (var i=0; i<str2.length; i++)  {
+                  var chk2 = str2.substring(i,i+1);    
+                    if(chk2.match(/[ㄱ-ㅎ|ㅏ-ㅣ]/)) { 
+                      err2++; 
+                    } 
+                }
+                if(err2>0) { 
+                  toast_t3('한글을 제대로 입력 해주세요.') 
+                }else{
+                  toast_t3('한글과 영문만 입력 해주세요.');  
+                }               
+            }           
+        }else if(getTextLength(str)==0){
+          toast_t3('이름을 입력 해주세요.');
+        }else{
+          toast_t3('이름이 너무 길어요.');  
+        }    
+    });
+    $("#signupPg_header4_leftarrow").click(function(){
+        $("#signupPg_header4").hide();
+        $("#signupPg_header3").show();
+        $("#signupPg_password2").val('');
+        $("#signupPg_name").val('');
+    });
+    $("#signupPg_header4_rightarrow").click(function(){
+        $("#signupPg_header5").show();
+        $("#signupPg_header4").hide();
+        $("#signupPg_header4_rightarrow").hide();
+        $("#signupPg_header4_rightarrow_g").show();
+    }); 
+    $('#signupPg_header5_rightarrow_g').click(function(){
+      toast_t2('1900 이상 2018 이하의 숫자를 입력해 주세요');   
+    });
+    $("#signupPg_header5_leftarrow").click(function(){
+        $("#signupPg_header5").hide();
+        $("#signupPg_header4").show();
+        $("#signupPg_age").val('');
+        $("#signupPg_name").val('');
+    });
+    $("#signupPg_header5_rightarrow").click(function(){
+        $("#signupPg_header6").show();
+        $("#signupPg_header5").hide();
+        $("#signupPg_header5_rightarrow").hide();
+        $("#signupPg_header5_rightarrow_g").show();
+    });
+    $('#signupPg_header6_finish_g').click(function(){
+      toast_t3('성별을 선택해 주세요.');    
+    });
+    $('#signupPg_header6_finish').click(function(){
+    });    
+    $("#signupPg_header6_leftarrow").click(function(){
+        $("#signupPg_header6").hide();
+        $("#signupPg_header5").show();
+        $("#signupPg_age").val('');
+    });
+    $("#signupPg_man").touchstart(function(){
+        signup_gender = 1;    
+        $("#signupPg_man").css({background:'rgb(22,23,27)',color:'white'});
+        $("#signupPg_woman").css({background:'rgba(100,100,100,0.1)',color:'rgb(22,23,27)'});
+        $("#signupPg_header6_finish").show();
+        $("#signupPg_header6_finish_g").hide();
+    });
+    $("#signupPg_woman").touchstart(function(){
+        signup_gender = 2;
+        $("#signupPg_man").css({background:'rgba(100,100,100,0.1)',color:'rgb(22,23,27)'});
+        $("#signupPg_woman").css({background:'rgb(22,23,27)',color:'white'});
+        $("#signupPg_header6_finish").show();
+        $("#signupPg_header6_finish_g").hide();        
+    });
+    $("#signupPg_header6_finish").click(function(){
+        $("#signupPg_header6").hide();
+        $("#signupPg_header7").show();
+    });
+    $("#signupPg_header7_leftarrow").click(function(){
+        $("#signupPg_header7").hide();
+        $("#signupPg_header6").show();
+    });
+    $("#signupPg_header7_finish").click(function(){
+        $("#signupPg").hide();
+        $("#signupPg_header7").hide();
+    });
+    $("#signupPg_header7_finish_g").click(function(){
+    var ph = Number($("#signupPg_ph").val());
+    var phs=ph+'';
+    var phl = phs.length;
+    if(phl>1){
+        toast_t3('숫자만 입력해 주세요.');
+    }else{
+        toast_t3('핸드폰 번호를 제대로 입력해 주세요.'); 
+    }        
+    });    
+});    
+</script>  
+<script>
+    //signupfunc
+    
+var signup_id;
+var signup_pw;
+var certc=function(){    
+  window.localStorage['mh']=$(window).height();    
+  if($('#signupPg_id').val()!=signup_id){
+    $("#signupPg_header1_rightarrow").hide();
+    $("#signupPg_header1_rightarrow_g").show();
+  }    
+};
+var recycle_signup_pw = function(){
+    var pwl = $("#signupPg_password1").val();
+    if(pwl.length > 5 &&pwl.length < 20){
+        $("#signupPg_header2_rightarrow").show();
+        $("#signupPg_header2_rightarrow_g").hide();
+        signup_pw = $("#signupPg_password1").val();
+    }else{
+        $("#signupPg_header2_rightarrow").hide();
+        $("#signupPg_header2_rightarrow_g").show();
+    }
+};
+var recycle_signup_pwc = function(){
+    if(signup_pw ==  $("#signupPg_password2").val()){
+        $("#signupPg_header3_rightarrow").show();
+        $("#signupPg_header3_rightarrow_g").hide();
+    }else{
+        $("#signupPg_header3_rightarrow_g").show();                
+        $("#signupPg_header3_rightarrow").hide();
+    }
+};
+function getTextLength(str) {
+    var len = 0;
+    for (var i = 0; i < str.length; i++) {
+        if (escape(str.charAt(i)).length == 6) {
+            len++;
+        }
+        len++;
+    }
+    return len;
+}
+var recycle_signup_name=  function(){
+    var str=$('#signupPg_name').val();
+    var err = 0;   
+    if(getTextLength(str) > 0 && getTextLength(str)<11){
+        for (var i=0; i<str.length; i++)  {
+            var chk = str.substring(i,i+1); 
+            if(!chk.match(/[가-힣]|[a-z]|[A-Z]/)) { 
+              err = err + 1; 
+            } 
+        } 
+        if (err > 0) {    
+          $("#signupPg_header4_rightarrow_g").show();                
+          $("#signupPg_header4_rightarrow").hide();
+        }else{
+          $("#signupPg_header4_rightarrow").show();
+          $("#signupPg_header4_rightarrow_g").hide();
+        }            
+    }else{
+        $("#signupPg_header4_rightarrow_g").show();                
+        $("#signupPg_header4_rightarrow").hide();
+    }
+}
+var recycle_signup_age = function(){
+    var age = Number($("#signupPg_age").val());
+    if(Number.isInteger(age)== true){
+        if(age >= 2019){
+            $("#signupPg_header5_rightarrow_g").show();           $("#signupPg_header5_rightarrow").hide();
+        }else if(age >= 1890){
+            $("#signupPg_header5_rightarrow").show();
+            $("#signupPg_header5_rightarrow_g").hide();
+        }else{
+            $("#signupPg_header5_rightarrow_g").show();           $("#signupPg_header5_rightarrow").hide();
+        }
+    }else{
+            $("#signupPg_header5_rightarrow_g").show();           $("#signupPg_header5_rightarrow").hide();
+    }
+};
+var signup_gender;
+var recycle_signup_ph = function(){
+    var ph = Number($("#signupPg_ph").val());
+    var phs=ph+'';
+    var phl = phs.length;
+    if(phl>1){
+        console.log('ph.length:'+phl);
+      if(Number.isInteger(ph)== true){
+          console.log('1');
+        $("#signupPg_header7_finish").show();           $("#signupPg_header7_finish_g").hide();
+      }else{
+          console.log('2');
+        $("#signupPg_header7_finish_g").show();           $("#signupPg_header7_finish").hide();
+      }        
+    }else{
+      console.log('ph.length:'+phl);
+      $("#signupPg_header7_finish_g").show();           $("#signupPg_header7_finish").hide();  
+    }
+};          
+</script>  
+<script>
+//toast
+var toast_t2 = function(txt){
+  $('.toast').remove();
+  var tst=$('<div></div>');
+  tst.addClass('toast');    
+  tst.html(txt);
+  tst.css({'position':'fixed','top':'0','left':'0','height':'60px','width':w_w+'px','background':'rgb(22,23,27)','color':'white','text-shadow':'0px 0px 0px rgba(255,255,255,0)','text-align':'center','line-height':'60px'});
+  $('#signupPg').append(tst);
+  setTimeout(function(){tst.fadeOut();},3000);
+  setTimeout(function(){tst.remove();},6000);    
+}
+var toast_t3 = function(txt){
+  $('.toast').remove();
+  var tst=$('<div></div>');
+  tst.addClass('toast');    
+  tst.text(txt);
+  tst.css({'position':'fixed','top':'0','left':'0','height':'60px','width':w_w+'px','background':'rgb(22,23,27)','color':'white','text-shadow':'0px 0px 0px rgba(255,255,255,0)','text-align':'center','line-height':'60px'});
+  $('#signupPg').append(tst);
+  setTimeout(function(){tst.fadeOut();},2000);
+  setTimeout(function(){tst.remove();},6000);    
+}
+var toast_t6 = function(txt){
+    console.log('toast_t6');
+  $('.toast').remove();
+  var tst=$('<div></div>');
+  tst.addClass('toast');    
+  tst.text(txt);
+  tst.css({'position':'fixed','top':'0','left':'0','height':'60px','width':w_w+'px','background':'rgb(22,23,27)','color':'white','text-shadow':'0px 0px 0px rgba(255,255,255,0)','text-align':'center','line-height':'60px'});
+  $('#signupPg').append(tst);
+  setTimeout(function(){tst.fadeOut();},5000);
+  setTimeout(function(){tst.remove();},8000);    
+}
+</script>           
+    <div id="signupPg">
+        <div id="signupPg_header1" class="signupPg_header">
+            <input type="text" id="signupPg_id" name="signupPg_id" placeholder="아이디를 입력해주세요." autofocus onkeyup="certc()">
+            <div id="signupPg_header1_space" class="signupPg_header_space"></div>
+            <div id="signupPg_header1_subject" class="signupPg_header_subject">회원가입</div>
+            <div id="signupPg_header1_rightarrow" class="signupPg_header_rightarrow">다음</div>
+            <div id="signupPg_header1_rightarrow_g" class="signupPg_header_rightarrow_g">다음</div>            
+            <div id="signupPg_header1_c" >중복확인</div>
+            <div id="signupPg_header1_useinfo">다음 버튼을 클릭하면 <a href="https://www.yomencity.xyz:8443/useinfo2" class="signupPg_header1_useinfo_a">Yomencity의 약관</a>,<br> <a href="https://www.yomencity.xyz:8443/useinfo" class="signupPg_header1_useinfo_a">개인정보 처리방침</a>에 동의하게 됩니다.</div>           
+        </div>
+        <div id="signupPg_header2" class="signupPg_header">
+            <input type="password" id="signupPg_password1" name="signupPg_password1" placeholder="비밀번호를 입력해 주세요." onkeyup="recycle_signup_pw()">
+            <div id="signupPg_header2_space" class="signupPg_header_space"></div>
+            <div id="signupPg_header2_subject" class="signupPg_header_subject">비밀번호 입력</div>
+            <div id="signupPg_header2_leftarrow" class="signupPg_header_leftarrow">이전</div> 
+            <div id="signupPg_header2_rightarrow" class="signupPg_header_rightarrow">다음</div>
+            <div id="signupPg_header2_rightarrow_g" class="signupPg_header_rightarrow_g">다음</div>
+        </div>
+        <div id="signupPg_header3" class="signupPg_header">
+            <input type="password" id="signupPg_password2" name="signupPg_password2" placeholder="비밀번호 한번 더 입력해 주세요." onkeyup="recycle_signup_pwc()">
+            <div id="signupPg_header3_space" class="signupPg_header_space"></div>
+            <div id="signupPg_header3_subject" class="signupPg_header_subject">비밀번호 확인</div>
+            <div id="signupPg_header3_leftarrow" class="signupPg_header_leftarrow">이전</div> 
+            <div id="signupPg_header3_rightarrow" class="signupPg_header_rightarrow">다음</div>
+            <div id="signupPg_header3_rightarrow_g" class="signupPg_header_rightarrow_g">다음</div>
+        </div>
+        <div id="signupPg_header4" class="signupPg_header">
+            <input type="text" id="signupPg_name" name="signupPg_name" placeholder="이름을 입력해주세요." onkeyup="recycle_signup_name()">
+            <div id="signupPg_header4_space" class="signupPg_header_space"></div>
+            <div id="signupPg_header4_subject" class="signupPg_header_subject">이름 입력</div>
+            <div id="signupPg_header4_leftarrow" class="signupPg_header_leftarrow">이전</div> 
+            <div id="signupPg_header4_rightarrow" class="signupPg_header_rightarrow">다음</div>
+            <div id="signupPg_header4_rightarrow_g" class="signupPg_header_rightarrow_g">다음</div>                                                   
+        </div>
+        <div id="signupPg_header5" class="signupPg_header">
+            <input type="text" id="signupPg_age" name="signupPg_age" placeholder="출생연도를 입력해주세요. 예) 1994" onkeyup="recycle_signup_age()">
+            <div id="signupPg_header5_space" class="signupPg_header_space"></div>
+            <div id="signupPg_header5_subject" class="signupPg_header_subject">출생연도 입력</div>
+            <div id="signupPg_header5_leftarrow" class="signupPg_header_leftarrow">이전</div> 
+            <div id="signupPg_header5_rightarrow" class="signupPg_header_rightarrow">다음</div>
+            <div id="signupPg_header5_rightarrow_g" class="signupPg_header_rightarrow_g">다음</div>
+        </div>
+        <div id="signupPg_header6" class="signupPg_header">
+            <div id="signupPg_man">남자</div>
+            <div id="signupPg_woman">여자</div>
+            <div id="signupPg_header5_subject" class="signupPg_header_subject">성별 선택</div>
+            <div id="signupPg_header6_leftarrow" class="signupPg_header_leftarrow">이전</div> 
+            <div id="signupPg_header6_finish">다음</div>
+            <div id="signupPg_header6_finish_g">다음</div>
+        </div>
+        <div id="signupPg_header7" class="signupPg_header">
+            <input type="text" id="signupPg_ph" name="signupPg_ph" placeholder="'-' 없이 숫자만 입력해 주세요." onkeyup="recycle_signup_ph()">
+            <div id="signupPg_header7_space" class="signupPg_header_space"></div>
+            <div id="signupPg_header7_subject" class="signupPg_header_subject">핸드폰 번호 입력</div>
+            <span id="signupPg_header7_info">약간의 과금이 발생될 수 있습니다.</span>
+            <div id="signupPg_header7_leftarrow" class="signupPg_header_leftarrow">이전</div> 
+            <div id="signupPg_header7_finish">동의 하고 인증</div>
+            <div id="signupPg_header7_finish_g">동의 하고 인증</div>
+        </div>        
+    </div>
+<!--
+    <input value="+82" id="country_code" />
+    <input placeholder="phone number" id="phone_number"/>
+    <button onclick="smsLogin();">Login via SMS</button>
+-->
+   <script>
+$(function(){
+  $("#signupPg_header7_finish").click(function(){
+      smsLogin();        
+  });
+});    
+    </script>
+    <script>
+      // initialize Account Kit with CSRF protection
+      AccountKit_OnInteractive = function(){
+        AccountKit.init(
+          {
+            appId:"2135590560102184", 
+            state:"{{csrf}}", 
+            version:"v1.0",
+            fbAppEventsEnabled:true,
+            redirect:"http://www.yomencity.xyz:3000/login_success",
+            debug:true
+          }
+        );
+      };
+
+      // login callback
+      function loginCallback(response) {
+        if (response.status === "PARTIALLY_AUTHENTICATED") {
+      document.getElementById("code").value = response.code;
+      document.getElementById("csrf").value = response.state;
+      document.getElementById("id_i").value = $("#signupPg_id").val();
+      document.getElementById("name_i").value = $("#signupPg_name").val();        
+      document.getElementById("pw_i").value = $("#signupPg_password2").val();
+      document.getElementById("gender_i").value =Number(signup_gender);
+      document.getElementById("age_i").value = Number($("#signupPg_age").val());
+      document.getElementById("login_success").submit();
+          // Send code to server to exchange for access token
+        }
+        else if (response.status === "NOT_AUTHENTICATED") {
+          // handle authentication failure
+        }
+        else if (response.status === "BAD_PARAMS") {
+          // handle bad parameters
+        }
+      }
+
+      // phone form submission handler
+      function smsLogin() {
+        var countryCode = '+82';
+        var phoneNumber = $('#signupPg_ph').val();
+        var para ='yomen';  
+        AccountKit.login(
+          'PHONE', 
+          {countryCode: countryCode, phoneNumber: phoneNumber}, // will use default values if not specified
+          loginCallback
+        );
+      }        
+    </script>
+<form id="login_success" method="post" action="/login_success">
+  <input id="csrf" type="hidden" name="csrf" />
+  <input id="code" type="hidden" name="code" />
+  <input id="id_i" type="hidden" name="id_i" />
+  <input id="name_i" type="hidden" name="name_i" />
+  <input id="pw_i" type="hidden" name="pw_i" />
+  <input id="age_i" type="hidden" name="age_i" />
+  <input id="gender_i" type="hidden" name="gender_i" /> 
+</form>       
+</body>
+</html>
